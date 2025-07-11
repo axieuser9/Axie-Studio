@@ -12,6 +12,7 @@ import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import AIFloatingButton from '../components/AIFloatingButton';
+import BottomNavigation from '../components/BottomNavigation';
 import PrivacyPolicy from '../components/PrivacyPolicy';
 import TermsOfService from '../components/TermsOfService';
 
@@ -52,6 +53,7 @@ const MainLayout: React.FC = () => {
       </Routes>
       <Footer />
       <AIFloatingButton />
+      <BottomNavigation />
     </div>
   );
 };

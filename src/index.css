@@ -265,6 +265,16 @@ a:focus-visible {
 
 /* Enhanced scrollbar for mobile */
 @media (max-width: 768px) {
+  /* Add bottom padding to prevent content from being hidden behind bottom nav */
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  /* Add bottom margin to main content on mobile */
+  main, section:last-of-type {
+    margin-bottom: 80px;
+  }
+  
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
@@ -282,6 +292,34 @@ a:focus-visible {
   * {
     scrollbar-width: none;
     -ms-overflow-style: none;
+  }
+}
+
+/* Safe area support for devices with notches */
+.h-safe-area-inset-bottom {
+  height: env(safe-area-inset-bottom, 0px);
+}
+
+/* Native app feel improvements */
+@media (max-width: 768px) {
+  /* Prevent text selection on navigation elements */
+  .bottom-nav {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Improve touch targets */
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Smooth scrolling for mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
