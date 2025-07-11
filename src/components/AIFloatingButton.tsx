@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Bot } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import EmbeddedChatbot from './EmbeddedChatbot';
 
@@ -18,7 +18,10 @@ const AIFloatingButton: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleOpenChat = () => {
+  const handleOpenChat = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Opening chat...'); // Debug log
     setIsChatOpen(true);
     
     // Track AI interaction
@@ -28,6 +31,7 @@ const AIFloatingButton: React.FC = () => {
   };
 
   const handleCloseChat = () => {
+    console.log('Closing chat...'); // Debug log
     setIsChatOpen(false);
   };
 
@@ -35,7 +39,7 @@ const AIFloatingButton: React.FC = () => {
 
   return (
     <>
-      {/* Simple Floating Button - Hidden on mobile when bottom nav is present */}
+      {/* Desktop Floating Button - Only visible on desktop when chat is closed */}
       <AnimatePresence>
         {!isChatOpen && (
           <motion.div
@@ -47,15 +51,23 @@ const AIFloatingButton: React.FC = () => {
           >
             <motion.button
               onClick={handleOpenChat}
-              className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group relative flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-none outline-none focus:outline-none focus:ring-4 focus:ring-blue-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              type="button"
+              aria-label={currentLanguage.code === 'sv' ? 'Öppna chat' : 'Open chat'}
             >
-              <Bot className="w-6 h-6" />
+              <MessageCircle className="w-7 h-7" />
+              
+              {/* Tooltip */}
+              <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none z-50">
+                {currentLanguage.code === 'sv' ? 'Chatta med oss' : 'Chat with us'}
+                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+              </div>
             </motion.button>
             
-            {/* Simple pulse effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-ping opacity-20" />
+            {/* Pulse effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-ping opacity-20 pointer-events-none" />
           </motion.div>
         )}
       </AnimatePresence>
