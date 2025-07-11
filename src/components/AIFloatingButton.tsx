@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Sparkles, Zap, Brain, Calendar, Shield, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import AIChat from './AIChat';
 import BookingModal from './BookingModal';
 
 const AIFloatingButton: React.FC = () => {
   const { t, currentLanguage } = useLanguage();
-  const [isAIChatOpen, setIsAIChatOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -28,7 +26,6 @@ const AIFloatingButton: React.FC = () => {
   // Check if user has interacted before
   useEffect(() => {
     const hasUsedAI = localStorage.getItem('axie-ai-used');
-    const lastInteraction = localStorage.getItem('axie-ai-last-interaction');
     
     setHasInteracted(!!hasUsedAI);
     
@@ -55,8 +52,7 @@ const AIFloatingButton: React.FC = () => {
     };
   }, []);
 
-  const handleOpenAIChat = () => {
-    setIsAIChatOpen(true);
+  const handleOpenChatbot = () => {
     setShowTooltip(false);
     
     if (!hasInteracted) {
@@ -66,18 +62,16 @@ const AIFloatingButton: React.FC = () => {
       setShowPulse(false);
     }
 
+    // Open external chatbot in new window/tab
+    window.open('https://axiestudiochatbot.netlify.app', '_blank', 'width=400,height=600,scrollbars=yes,resizable=yes');
+
     // Track AI interaction
     if (typeof window !== 'undefined' && window.trackAIInteraction) {
-      window.trackAIInteraction('ai_chat_opened', 'AI Assistant');
+      window.trackAIInteraction('external_chatbot_opened', 'External AI Assistant');
     }
   };
 
-  const handleCloseAIChat = () => {
-    setIsAIChatOpen(false);
-  };
-
   const handleOpenBookingFromAI = () => {
-    setIsAIChatOpen(false);
     setIsBookingModalOpen(true);
     
     // Track booking conversion from AI
@@ -95,7 +89,7 @@ const AIFloatingButton: React.FC = () => {
   return (
     <>
       <AnimatePresence>
-        {!isAIChatOpen && !isBookingModalOpen && (
+        {!isBookingModalOpen && (
           <motion.div
             className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 lg:bottom-6 lg:right-6 z-40"
             initial={{ scale: 0, opacity: 0, y: 100 }}
@@ -114,7 +108,7 @@ const AIFloatingButton: React.FC = () => {
             
             {/* Main enhanced button */}
             <motion.button
-              onClick={handleOpenAIChat}
+              onClick={handleOpenChatbot}
               className="relative group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 btn-premium"
               whileHover={{ scale: 1.15, y: -5 }}
               whileTap={{ scale: 0.95 }}
@@ -203,12 +197,6 @@ const AIFloatingButton: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* AI Chat Modal */}
-      <AIChat 
-        isOpen={isAIChatOpen} 
-        onClose={handleCloseAIChat}
-      />
 
       {/* Booking Modal */}
       <BookingModal 
