@@ -8,7 +8,6 @@ export const sv = {
     services: "Priser",
     contact: "Kontakt",
     bookTime: "Boka tid",
-    login: "Logga in",
     home: "Hem",
     chat: "Chat",
     menu: "Meny",

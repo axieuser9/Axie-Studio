@@ -8,7 +8,6 @@ export const en = {
     services: "Pricing",
     contact: "Contact",
     bookTime: "Book Time",
-    login: "Login",
     home: "Home",
     chat: "Chat",
     menu: "Menu",

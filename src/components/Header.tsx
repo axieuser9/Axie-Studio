@@ -137,21 +137,6 @@ const Header = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X size={24} className="text-gray-700" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu size={24} className="text-gray-700" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
           </div>
 
           <AnimatePresence>
@@ -197,21 +182,6 @@ const Header = () => {
                     <Calendar className="mr-2" size={18} />
                     {t('nav.bookTime')}
                   </motion.button>
-                  
-                  <motion.a 
-                    href="https://app.axiestudio.se/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 py-3 rounded-2xl font-bold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-500 flex items-center justify-center shadow-lg touch-manipulation min-h-[48px]"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7, type: "spring" }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Heart className="mr-2 animate-pulse" size={18} />
-                    {t('nav.login')}
-                    <ExternalLink className="ml-2" size={18} />
-                  </motion.a>
                 </nav>
               </motion.div>
             )}
