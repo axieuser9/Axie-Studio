@@ -175,7 +175,7 @@ const Header = () => {
                       setIsBookingModalOpen(true);
                       setIsMenuOpen(false);
                     }}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-500 flex items-center justify-center mt-6 shadow-xl touch-manipulation min-h-[56px]"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-500 flex items-center justify-center mt-6 mx-4 shadow-xl touch-manipulation min-h-[56px]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, type: "spring" }}
