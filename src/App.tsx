@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavig
 import { SUPPORTED_LANGUAGES } from './types/language';
 import MainLayout from './layouts/MainLayout';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
@@ -18,11 +17,9 @@ function App() {
             key={lang.code} 
             path={`/${lang.code}/*`} 
             element={
-              <AuthProvider>
-                <LanguageProvider>
-                  <MainLayout />
-                </LanguageProvider>
-              </AuthProvider>
+              <LanguageProvider>
+                <MainLayout />
+              </LanguageProvider>
             } 
           />
         ))}

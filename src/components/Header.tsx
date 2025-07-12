@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Heart, Sparkles, Calendar, LogIn } from 'lucide-react';
+import { Menu, X, ExternalLink, Heart, Sparkles, Calendar } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Link, useLocation } from 'react-router-dom';
 import BookingModal from './BookingModal';
 import LanguageSwitcher from './LanguageSwitcher';
-import { useAuth } from '../contexts/AuthContext';
-import UserMenu from './Auth/UserMenu';
-import AuthModal from './Auth/AuthModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { t, currentLanguage } = useLanguage();
   const location = useLocation();
-  const { user, loading } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -112,24 +107,20 @@ const Header = () => {
                 <span className="relative z-10">{t('nav.bookTime')}</span>
               </motion.button>
 
-              {/* Auth Section */}
-              {loading ? (
-                <div className="w-10 h-10 bg-gray-200 rounded-xl animate-pulse" />
-              ) : user ? (
-                <UserMenu />
-              ) : (
-                <motion.button
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className="group relative overflow-hidden bg-gradient-to-r from-gray-800 to-black text-white px-6 py-3 rounded-xl font-semibold hover:from-gray-900 hover:to-gray-800 transition-all duration-500 flex items-center text-sm shadow-lg hover:shadow-glow-lg"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                  <LogIn className="mr-2 relative z-10" size={16} />
-                  <span className="relative z-10">Sign In</span>
-                  <Sparkles className="ml-2 relative z-10 text-yellow-300 opacity-0 group-hover:opacity-100 transition-opacity" size={12} />
-                </motion.button>
-              )}
+              <motion.a 
+                href="https://app.axiestudio.se/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-500 flex items-center text-sm shadow-lg hover:shadow-glow-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <Heart className="mr-2 relative z-10 animate-pulse" size={16} />
+                <span className="relative z-10">{t('nav.login')}</span>
+                <ExternalLink className="ml-2 group-hover:translate-x-1 group-hover:scale-110 transition-all relative z-10" size={16} />
+                <Sparkles className="absolute top-1 right-1 text-yellow-300 opacity-0 group-hover:opacity-100 transition-opacity" size={12} />
+              </motion.a>
             </div>
 
             <motion.button
@@ -207,40 +198,20 @@ const Header = () => {
                     {t('nav.bookTime')}
                   </motion.button>
                   
-                  {/* Mobile Auth */}
-                  {loading ? (
-                    <div className="w-full h-12 bg-gray-200 rounded-2xl animate-pulse mt-4" />
-                  ) : user ? (
-                    <motion.button
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        // Could open user menu or navigate to dashboard
-                      }}
-                      className="bg-gradient-to-r from-gray-800 to-black text-white px-6 py-3 rounded-2xl font-bold hover:from-gray-900 hover:to-gray-800 transition-all duration-500 flex items-center justify-center shadow-lg touch-manipulation min-h-[48px] mt-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.7, type: "spring" }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Heart className="mr-2" size={18} />
-                      Welcome, {user.email?.split('@')[0]}
-                    </motion.button>
-                  ) : (
-                    <motion.button
-                      onClick={() => {
-                        setIsAuthModalOpen(true);
-                        setIsMenuOpen(false);
-                      }}
-                      className="bg-gradient-to-r from-gray-800 to-black text-white px-6 py-3 rounded-2xl font-bold hover:from-gray-900 hover:to-gray-800 transition-all duration-500 flex items-center justify-center shadow-lg touch-manipulation min-h-[48px] mt-4"
+                  <motion.a 
+                    href="https://app.axiestudio.se/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 py-3 rounded-2xl font-bold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-500 flex items-center justify-center shadow-lg touch-manipulation min-h-[48px]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7, type: "spring" }}
                     whileTap={{ scale: 0.98 }}
                   >
-                      <LogIn className="mr-2" size={18} />
-                      Sign In
-                    </motion.button>
-                  )}
+                    <Heart className="mr-2 animate-pulse" size={18} />
+                    {t('nav.login')}
+                    <ExternalLink className="ml-2" size={18} />
+                  </motion.a>
                 </nav>
               </motion.div>
             )}
@@ -251,11 +222,6 @@ const Header = () => {
       <BookingModal 
         isOpen={isBookingModalOpen} 
         onClose={() => setIsBookingModalOpen(false)} 
-      />
-      
-      <AuthModal 
-        isOpen={isAuthModalOpen} 
-        onClose={() => setIsAuthModalOpen(false)} 
       />
     </>
   );
