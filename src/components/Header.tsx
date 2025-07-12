@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Calendar } from 'lucide-react';
-import { Menu, X, Sparkles, Calendar } from 'lucide-react';
+import { Menu, X, ExternalLink, Heart, Sparkles, Calendar } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Link, useLocation } from 'react-router-dom';
 import BookingModal from './BookingModal';
@@ -99,15 +98,29 @@ const Header = () => {
               
               <motion.button
                 onClick={() => setIsBookingModalOpen(true)}
-                className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-500 flex items-center text-base shadow-xl hover:shadow-glow-lg"
+                className="group relative overflow-hidden bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-500 flex items-center text-sm shadow-lg hover:shadow-glow"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <Calendar className="mr-3 relative z-10" size={20} />
-                <span className="relative z-10 font-bold">{t('nav.bookTime')}</span>
-                <Sparkles className="ml-3 relative z-10 animate-pulse" size={18} />
+                <Calendar className="mr-2 relative z-10" size={16} />
+                <span className="relative z-10">{t('nav.bookTime')}</span>
               </motion.button>
+
+              <motion.a 
+                href="https://app.axiestudio.se/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-500 flex items-center text-sm shadow-lg hover:shadow-glow-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <Heart className="mr-2 relative z-10 animate-pulse" size={16} />
+                <span className="relative z-10">{t('nav.login')}</span>
+                <ExternalLink className="ml-2 group-hover:translate-x-1 group-hover:scale-110 transition-all relative z-10" size={16} />
+                <Sparkles className="absolute top-1 right-1 text-yellow-300 opacity-0 group-hover:opacity-100 transition-opacity" size={12} />
+              </motion.a>
             </div>
 
             <motion.button
@@ -175,16 +188,30 @@ const Header = () => {
                       setIsBookingModalOpen(true);
                       setIsMenuOpen(false);
                     }}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-500 flex items-center justify-center mt-6 mx-4 shadow-xl touch-manipulation min-h-[56px]"
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-2xl font-bold hover:from-green-600 hover:to-emerald-700 transition-all duration-500 flex items-center justify-center mt-4 shadow-lg touch-manipulation min-h-[48px]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, type: "spring" }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Calendar className="mr-3" size={20} />
+                    <Calendar className="mr-2" size={18} />
                     {t('nav.bookTime')}
-                    <Sparkles className="ml-3 animate-pulse" size={18} />
                   </motion.button>
+                  
+                  <motion.a 
+                    href="https://app.axiestudio.se/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 py-3 rounded-2xl font-bold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-500 flex items-center justify-center shadow-lg touch-manipulation min-h-[48px]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, type: "spring" }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Heart className="mr-2 animate-pulse" size={18} />
+                    {t('nav.login')}
+                    <ExternalLink className="ml-2" size={18} />
+                  </motion.a>
                 </nav>
               </motion.div>
             )}
