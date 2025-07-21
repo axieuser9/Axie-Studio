@@ -37,6 +37,32 @@ export const en = {
     }
   },
   
+  // AI Agent Section
+  aiAgent: {
+    badge: "AI AGENT",
+    title: "Meet Your AI Assistant",
+    subtitle: "Experience the future of customer service with our intelligent AI agent that understands your business and helps your customers 24/7.",
+    features: {
+      availability: {
+        title: "24/7 Availability",
+        description: "Always ready to help your customers, no matter the time or day."
+      },
+      responses: {
+        title: "Instant Responses",
+        description: "Lightning-fast answers to customer questions and inquiries."
+      },
+      learning: {
+        title: "Smart Learning",
+        description: "Continuously learns and improves from every interaction."
+      }
+    },
+    status: {
+      online: "Live & Ready to Help",
+      poweredBy: "Powered by AI",
+      loading: "Loading AI Agent..."
+    }
+  },
+  
   // Booking Section
   booking: {
     badge: "Industry-Leading Booking System",

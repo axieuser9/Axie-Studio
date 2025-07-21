@@ -34,12 +34,12 @@ const AIAgentSection = () => {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
             <Bot className="mr-2 animate-bounce" size={20} />
-            AI AGENT
+            {t('aiAgent.badge')}
             <Sparkles className="ml-2 animate-pulse" size={20} />
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            Meet Your AI Assistant
+            {t('aiAgent.title')}
           </h2>
           
           <motion.p 
@@ -48,7 +48,7 @@ const AIAgentSection = () => {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Experience the future of customer service with our intelligent AI agent that understands your business and helps your customers 24/7.
+            {t('aiAgent.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -67,16 +67,16 @@ const AIAgentSection = () => {
                   <Bot size={24} className="text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold">Axie AI Agent</h3>
+                  <h3 className="text-lg sm:text-xl font-bold">{t('aiAgent.badge')}</h3>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-sm opacity-90">Live & Ready to Help</span>
+                    <span className="text-sm opacity-90">{t('aiAgent.status.online')}</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
                 <Zap className="text-yellow-300" size={20} />
-                <span className="text-sm font-medium">Powered by AI</span>
+                <span className="text-sm font-medium">{t('aiAgent.status.poweredBy')}</span>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ const AIAgentSection = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-500" id="ai-agent-loading">
               <div className="text-center">
                 <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mb-4"></div>
-                <p className="text-gray-600 font-medium">Loading AI Agent...</p>
+                <p className="text-gray-600 font-medium">{t('aiAgent.status.loading')}</p>
               </div>
             </div>
           </div>
@@ -113,24 +113,24 @@ const AIAgentSection = () => {
             <div className="bg-gradient-to-br from-purple-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Bot className="text-white" size={28} />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">24/7 Availability</h3>
-            <p className="text-gray-600">Always ready to help your customers, no matter the time or day.</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('aiAgent.features.availability.title')}</h3>
+            <p className="text-gray-600">{t('aiAgent.features.availability.description')}</p>
           </div>
 
           <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50">
             <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Zap className="text-white" size={28} />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Responses</h3>
-            <p className="text-gray-600">Lightning-fast answers to customer questions and inquiries.</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('aiAgent.features.responses.title')}</h3>
+            <p className="text-gray-600">{t('aiAgent.features.responses.description')}</p>
           </div>
 
           <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50">
             <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Sparkles className="text-white" size={28} />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Smart Learning</h3>
-            <p className="text-gray-600">Continuously learns and improves from every interaction.</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('aiAgent.features.learning.title')}</h3>
+            <p className="text-gray-600">{t('aiAgent.features.learning.description')}</p>
           </div>
         </motion.div>
       </div>
