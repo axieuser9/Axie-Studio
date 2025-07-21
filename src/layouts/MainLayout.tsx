@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
+import AIAgentSection from '../components/AIAgentSection';
 import BookingSection from '../components/BookingSection';
 import WebsiteSection from '../components/WebsiteSection';
 import AppSection from '../components/AppSection';
@@ -62,6 +63,7 @@ const MainLayout: React.FC = () => {
 const HomePage = () => (
   <>
     <Hero />
+    <AIAgentSection />
     <BookingSection />
     <WebsiteSection />
     <AppSection />

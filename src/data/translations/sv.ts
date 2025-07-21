@@ -37,6 +37,32 @@ export const sv = {
     }
   },
   
+  // AI Agent Section
+  aiAgent: {
+    badge: "AI AGENT",
+    title: "Träffa din AI-Assistent",
+    subtitle: "Upplev framtiden inom kundservice med vår intelligenta AI-agent som förstår ditt företag och hjälper dina kunder 24/7.",
+    features: {
+      availability: {
+        title: "24/7 Tillgänglighet",
+        description: "Alltid redo att hjälpa dina kunder, oavsett tid på dygnet."
+      },
+      responses: {
+        title: "Omedelbara Svar",
+        description: "Blixtsnabba svar på kundfrågor och förfrågningar."
+      },
+      learning: {
+        title: "Smart Inlärning",
+        description: "Lär sig kontinuerligt och förbättras från varje interaktion."
+      }
+    },
+    status: {
+      online: "Live & Redo att Hjälpa",
+      poweredBy: "Driven av AI",
+      loading: "Laddar AI Agent..."
+    }
+  },
+  
   // Booking Section
   booking: {
     badge: "Klassens Bästa Bokningssystem",
